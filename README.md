@@ -1,4 +1,3 @@
-
 # source-map-peek
 
 Peek into embedded source maps from the cli when devtools fail.
@@ -24,3 +23,4 @@ Example
     file /path/to/file.coffee
     line: 20 column: 8
 
+Install `npm install -g source-map-peek`
