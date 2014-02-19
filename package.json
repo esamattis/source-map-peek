@@ -1,0 +1,21 @@
+{
+  "name": "source-map-peek",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "source-map-peek": "./index.js"
+  },
+  "dependencies": {
+    "colors": "~0.6.2",
+    "convert-source-map": "~0.3.3",
+    "minimist": "~0.0.7",
+    "source-map": "~0.1.32"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
