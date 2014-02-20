@@ -6,6 +6,8 @@ Usage
 
     source-map-peek [-p|--padding] FILE<:LINE>[:COLUMN]
 
+    --vim start vim on the line
+
 Example
 
     $ source-map-peek -p 5 bundle.js:9134

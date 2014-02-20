@@ -10,7 +10,8 @@
     "colors": "~0.6.2",
     "convert-source-map": "~0.3.3",
     "minimist": "~0.0.7",
-    "source-map": "~0.1.32"
+    "source-map": "~0.1.32",
+    "kexec": "~0.2.0"
   },
   "devDependencies": {},
   "scripts": {

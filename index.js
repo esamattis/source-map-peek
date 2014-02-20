@@ -3,6 +3,9 @@
 var fs = require("fs");
 var SourceMapConsumer = require("source-map").SourceMapConsumer;
 var convert = require("convert-source-map");
+var kexec = require("kexec");
+
+
 require("colors");
 
 var argv = require('minimist')(process.argv.slice(2), {
@@ -13,7 +16,7 @@ var argv = require('minimist')(process.argv.slice(2), {
         p: "padding",
         h: "help"
     },
-    boolean: "help"
+    boolean: ["help", "vim"]
 });
 
 if (argv.help) {
@@ -47,6 +50,12 @@ var smc = new SourceMapConsumer(converter.sourcemap);
 
 var origpos = smc.originalPositionFor({ line: line, column: column });
 
+if (argv.vim) {
+    kexec("vim", [
+        "+call cursor(" + origpos.line + ", " + origpos.column +")",
+        origpos.source
+    ]);
+}
 
 var preview = fs.readFileSync(origpos.source)
     .toString()
