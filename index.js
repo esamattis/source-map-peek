@@ -16,7 +16,7 @@ var argv = require('minimist')(process.argv.slice(2), {
         p: "padding",
         h: "help"
     },
-    boolean: ["help", "vim"]
+    boolean: ["help", "vim", "emacs", "nano", "less", "gedit", "path"]
 });
 
 if (argv.help) {
@@ -56,6 +56,17 @@ if (argv.vim) {
         origpos.source
     ]);
 }
+
+function startEditorOnLine(editor) {
+    // Used by the most editors
+    kexec(editor, [ "+" + origpos.line, origpos.source ]);
+}
+
+if (argv.emacs) startEditorOnLine("emacs");
+if (argv.gedit) startEditorOnLine("gedit");
+if (argv.less) startEditorOnLine("less");
+if (argv.nano) startEditorOnLine("nano");
+
 
 var preview = fs.readFileSync(origpos.source)
     .toString()

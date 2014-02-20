@@ -6,7 +6,13 @@ Usage
 
     source-map-peek [-p|--padding] FILE<:LINE>[:COLUMN]
 
-    --vim start vim on the line
+    To start editor on the line use
+
+        --emacs
+        --gedit
+        --less
+        --nano
+        --vim
 
 Example
 
