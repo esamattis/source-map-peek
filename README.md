@@ -14,6 +14,7 @@ For example
 
 Source Map Peek is a small bandage for these situations. It allows you to view and access the original source using source maps from the command line.
 
+Screencast <http://youtu.be/u11QzPGIDWU>
 
 Usage
 -----
@@ -49,8 +50,6 @@ Example
 
     file /path/to/file.coffee
     line: 20 column: 8
-
-Screencast <http://youtu.be/u11QzPGIDWU>
 
 Install
 -------
