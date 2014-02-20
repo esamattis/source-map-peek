@@ -5,7 +5,6 @@ var SourceMapConsumer = require("source-map").SourceMapConsumer;
 var convert = require("convert-source-map");
 var kexec = require("kexec");
 
-
 require("colors");
 
 var argv = require('minimist')(process.argv.slice(2), {
@@ -16,7 +15,15 @@ var argv = require('minimist')(process.argv.slice(2), {
         p: "padding",
         h: "help"
     },
-    boolean: ["help", "vim", "emacs", "nano", "less", "gedit", "path"]
+    boolean: [
+        "help",
+        "vim",
+        "emacs",
+        "nano",
+        "less",
+        "gedit",
+        "path"
+    ]
 });
 
 if (argv.help) {
@@ -67,6 +74,10 @@ if (argv.gedit) startEditorOnLine("gedit");
 if (argv.less) startEditorOnLine("less");
 if (argv.nano) startEditorOnLine("nano");
 
+if (argv.path) {
+    process.stdout.write(origpos.source + "\n");
+    process.exit(0);
+}
 
 var preview = fs.readFileSync(origpos.source)
     .toString()

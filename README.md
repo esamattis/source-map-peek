@@ -4,7 +4,10 @@ Peek into embedded source maps from the cli when devtools fail.
 
 Usage
 
-    source-map-peek [-p|--padding] FILE<:LINE>[:COLUMN]
+    source-map-peek [OPTIONS] FILE<:LINE>[:COLUMN]
+
+    --path      Print only the source path.
+    --padding   Add padding for the preview. Default: 10
 
     To start editor on the line use
 
