@@ -5,10 +5,11 @@ var SourceMapConsumer = require("source-map").SourceMapConsumer;
 var convert = require("convert-source-map");
 var kexec = require("kexec");
 var path = require("path");
+var minimist = require("minimist");
 
 require("colors");
 
-var argv = require('minimist')(process.argv.slice(2), {
+var argv = minimist(process.argv.slice(2), {
     default: {
         padding: 10
     },
@@ -105,20 +106,28 @@ if (argv.path) {
     process.exit(0);
 }
 
-var preview = fs.readFileSync(origpos.source)
-    .toString()
-    .split("\n")
-    .map(function(line, i) {
-        var linenum = i + 1;
-        var out = linenum + ": " + line;
-        if (linenum == origpos.line) out = out.red;
-        return out;
-    })
-    .slice(origpos.line - argv.padding, origpos.line + argv.padding)
-    .join("\n")
-    ;
+try {
+    var originalSource = fs.readFileSync(origpos.source).toString();
+} catch (err) {
+    console.error("Failed to open original source file from", origpos.source, err.code);
+}
 
-console.log(preview);
-console.log();
-console.log("file", origpos.source);
+if (originalSource) {
+    var preview = originalSource
+        .split("\n")
+        .map(function(line, i) {
+            var linenum = i + 1;
+            var out = linenum + ": " + line;
+            if (linenum == origpos.line) out = out.red;
+            return out;
+        })
+        .slice(origpos.line - argv.padding, origpos.line + argv.padding)
+        .join("\n")
+        ;
+
+    console.log(preview);
+    console.log();
+}
+
+console.log("file:", origpos.source);
 console.log("line:", origpos.line, "column:", origpos.column);
