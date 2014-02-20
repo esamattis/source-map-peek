@@ -1,6 +1,6 @@
 # source-map-peek
 
-Peek into embedded source maps from the cli when devtools fail.
+Peek into source maps from the cli when devtools fail.
 
 Usage
 
@@ -8,14 +8,15 @@ Usage
 
     --path      Print only the source path.
     --padding   Add padding for the preview. Default: 10
+    --map       Set custom path to the source map file if everything else fails
 
     To start editor on the line use
 
-        --emacs
-        --gedit
-        --less
-        --nano
-        --vim
+    --emacs
+    --gedit
+    --less
+    --nano
+    --vim
 
 Example
 

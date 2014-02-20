@@ -4,6 +4,7 @@ var fs = require("fs");
 var SourceMapConsumer = require("source-map").SourceMapConsumer;
 var convert = require("convert-source-map");
 var kexec = require("kexec");
+var path = require("path");
 
 require("colors");
 
@@ -44,11 +45,36 @@ if (match = file.match(/^(.*?)(\:[0-9]+)(\:[0-9]+|$)/)) {
     if (match[3]) column = parseInt(match[3].slice(1), 10);
 }
 
+
 var source = fs.readFileSync(file).toString();
+var converter;
 
-var converter = convert.fromSource(source);
+// --map
+if (argv.map) {
+    var mapSource = fs.readFileSync(argv.map).toString();
+    converter = convert.fromJSON(mapSource);
+}
 
-if (!converter.sourcemap) {
+// inline base64 source map
+// //# sourceMappingURL=data:application/json;base64,eyJ2....
+if (!converter) {
+    converter = convert.fromSource(source);
+}
+
+// With link to file name
+// //# sourceMappingURL=filename.map
+if (!converter) {
+    converter = convert.fromMapFileSource(source, path.dirname(file));
+}
+
+// Just guess
+if (!converter) {
+    var guessFile = file.replace(/\.js$/, "") + ".map";
+    var mapSource = fs.readFileSync(guessFile).toString();
+    converter = convert.fromJSON(mapSource);
+}
+
+if (!converter || !converter.sourcemap) {
     console.error("Cannot find source map from", file);
     process.exit(1);
 }
