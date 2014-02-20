@@ -10,7 +10,7 @@ For example
   - Those shitty old browsers
   - Long stack traces from promise libraries such as Q or Bluebird
   - Some bad test frameworks
-  - Probably some other weird setups
+  - Probably in some other weird setups too
 
 Source Map Peek is a small bandage for these situations. It allows you to view and access the original source using source maps from the command line.
 
