@@ -1,6 +1,8 @@
 Source Map Peek
 ===============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/epeli/source-map-peek.svg)](https://greenkeeper.io/)
+
 Peek into original source via source maps from the command line when devtools fail.
 
 There are still few cases where source map support fails and you have to debug the huge js bundle.
