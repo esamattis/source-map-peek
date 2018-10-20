@@ -9,7 +9,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "convert-source-map": "^1.1.1",
-    "kexec": "^1.2.0",
+    "kexec": "^3.0.0",
     "minimist": "^1.2.0",
     "source-map": "^0.5.0"
   },
